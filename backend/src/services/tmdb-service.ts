@@ -1,5 +1,10 @@
 import api from "../lib/api"
 
+export const getDiscoverMoviesWithPagination = async (page: number) => {
+  const res = await api.get(`/trending/movie/week?language=pt-BR&page=${page}`)
+  return res.data
+}
+
 export const getTrendingMoviesByWeek = async () => {
   const res = await api.get(`/trending/movie/week?language=pt-BR`)
   return res.data
