@@ -1,0 +1,14 @@
+services:
+  db:
+    image: bitnami/postgresql:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=jrantunes
+      - POSTGRES_PASSWORD=dev
+      - POSTGRES_DB=moviesdb
+    volumes:
+      - moviesdb_pg_data:/bitnami/postgresql
+
+volumes:
+  moviesdb_pg_data:
