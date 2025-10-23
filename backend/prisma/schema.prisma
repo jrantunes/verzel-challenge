@@ -12,7 +12,6 @@ model FavoriteList {
   id        Int        @id @default(autoincrement())
   sessionId String     @unique
   uuid      String     @unique @default(uuid())
-  name      String?
   favorites Favorite[]
   createdAt DateTime   @default(now())
 }
