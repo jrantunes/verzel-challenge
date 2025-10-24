@@ -18,7 +18,7 @@ export const getGenres = async () => {
 export const searchMovies = async (query: string) => {
   const res = await api.get(`/search/movie?language=pt-BR`, {
     params: { query },
-  });
+  })
   return res.data
 }
 
