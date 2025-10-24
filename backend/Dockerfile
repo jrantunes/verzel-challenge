@@ -19,6 +19,6 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
 COPY .env .env
 
-EXPOSE 3000
+EXPOSE ${API_PORT}
 
 CMD ["node", "dist/src/server.js"]
