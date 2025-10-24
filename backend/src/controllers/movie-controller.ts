@@ -6,11 +6,13 @@ import {
   searchMovies,
   getMovieDetails
 } from "../services/tmdb-service"
+import { getByIdSchema, getDiscoverSchema, searchSchema } from "../validators/movie-validator"
 
 export const getDiscoverMovies = async (req: Request, res: Response) => {
   try {
-    const page = (req.query.page as string) || 1
-    const discoverMovies = await getDiscoverMoviesWithPagination(Number(page))
+    const parsed = getDiscoverSchema.safeParse(req.query)
+    if (!parsed.success) return res.status(400).json(parsed.error.issues)
+    const discoverMovies = await getDiscoverMoviesWithPagination(parsed.data.page)
     res.json(discoverMovies)
   } catch (err) {
     console.error(err)
@@ -40,8 +42,9 @@ export const getTrendingMovies = async (_: Request, res: Response) => {
 
 export const getMovies = async (req: Request, res: Response) => {
   try {
-    const q = (req.query.q as string) || ""
-    const movies = await searchMovies(q)
+    const parsed = searchSchema.safeParse(req.query)
+    if (!parsed.success) return res.status(400).json(parsed.error.issues)
+    const movies = await searchMovies(parsed.data.q)
     res.json(movies)
   } catch (err) {
     console.error(err)
@@ -51,7 +54,9 @@ export const getMovies = async (req: Request, res: Response) => {
 
 export const getMovieById = async (req: Request, res: Response) => {
   try {
-    const movie = await getMovieDetails(req.params.id)
+    const parsed = getByIdSchema.safeParse(req.params)
+    if (!parsed.success) return res.status(400).json(parsed.error.issues)
+    const movie = await getMovieDetails(parsed.data.id)
     res.json(movie)
   } catch (err) {
     console.error(err)
