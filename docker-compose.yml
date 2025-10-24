@@ -2,18 +2,18 @@ services:
   api:
     build: ./backend
     ports:
-      - "${PORT}:${PORT}"
+      - "${API_PORT}:${API_PORT}"
     environment:
       DATABASE_URL: "${DATABASE_URL}"
       TMDB_API_KEY: "${TMDB_API_KEY}"
-      BASE_URL: "${API_BASE_URL}"
-      PORT: "${PORT}"
+      API_BASE_URL: "${API_BASE_URL}"
+      API_PORT: "${API_PORT}"
     depends_on:
       - db
   db:
     image: bitnami/postgresql:latest
     ports:
-      - '5432:5432'
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
