@@ -3,9 +3,8 @@ import { z } from "zod"
 export const addFavoriteSchema = z.object({
   movieId: z.number(),
   title: z.string(),
-  posterPath: z.string().optional(),
-  rating: z.number().optional(),
-  sessionId: z.string().optional(),
+  posterPath: z.string(),
+  rating: z.number(),
 })
 
 export const removeFavoriteSchema = z.object({

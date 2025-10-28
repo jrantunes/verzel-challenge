@@ -1,14 +1,14 @@
 import { Request, Response } from "express"
 import { generateShareLink } from "../utils/generate-share-link"
 import { prisma } from "../lib/prisma"
-import { addFavoriteSchema, generateShareSchema, removeFavoriteSchema } from "../validators/favorite-validator";
+import { addFavoriteSchema, generateShareSchema, removeFavoriteSchema } from "../validators/favorite-validator"
 
 export const addFavorite = async (req: Request, res: Response) => {
   try {
-    const parsed = addFavoriteSchema.safeParse(req.body);
-    if (!parsed.success) return res.status(400).json(parsed.error.issues);
-    const { movieId, title, posterPath, rating, sessionId: bodySessionId } = parsed.data;
-    const sessionId = (req.headers["x-session-id"] as string) || bodySessionId;
+    const parsed = addFavoriteSchema.safeParse(req.body)
+    if (!parsed.success) return res.status(400).json(parsed.error.issues)
+    const { movieId, title, posterPath, rating } = parsed.data
+    const sessionId = (req.headers["x-session-id"] as string)
     if (!sessionId) return res.status(400).json({ error: "sessionId é obrigatório (header x-session-id ou body)" })
     if (!movieId || !title) return res.status(400).json({ error: "movieId e title são obrigatórios" })
     let favoritesList = await prisma.favoriteList.findUnique({ where: { sessionId } })
@@ -52,10 +52,10 @@ export const getFavoritesBySession = async (req: Request, res: Response) => {
 
 export const removeFavorite = async (req: Request, res: Response) => {
   try {
-    const parsed = removeFavoriteSchema.safeParse({ ...req.body, ...req.params });
-    if (!parsed.success) return res.status(400).json(parsed.error.issues);
-    const { movieId, sessionId: bodySessionId } = parsed.data;
-    const sessionId = (req.headers["x-session-id"] as string) || bodySessionId;
+    const parsed = removeFavoriteSchema.safeParse({ ...req.body, ...req.params })
+    if (!parsed.success) return res.status(400).json(parsed.error.issues)
+    const { movieId, sessionId: bodySessionId } = parsed.data
+    const sessionId = (req.headers["x-session-id"] as string) || bodySessionId
     if (!sessionId || !movieId) return res.status(400).json({ error: "sessionId e movieId são obrigatórios" })
     const favoritesList = await prisma.favoriteList.findUnique({ where: { sessionId } })
     if (!favoritesList) return res.status(404).json({ error: "Lista de favoritos não encontrada" })
@@ -72,9 +72,9 @@ export const removeFavorite = async (req: Request, res: Response) => {
 
 export const generateShare = async (req: Request, res: Response) => {
   try {
-    const parsed = generateShareSchema.safeParse({ ...req.body });
-    if (!parsed.success) return res.status(400).json(parsed.error.issues);
-    const sessionId = (req.headers["x-session-id"] as string) || parsed.data.sessionId;
+    const parsed = generateShareSchema.safeParse({ ...req.body })
+    if (!parsed.success) return res.status(400).json(parsed.error.issues)
+    const sessionId = (req.headers["x-session-id"] as string) || parsed.data.sessionId
     if (!sessionId) return res.status(400).json({ error: "sessionId é obrigatório" })
     const favoritesList = await prisma.favoriteList.findUnique({ where: { sessionId } })
     if (!favoritesList) return res.status(404).json({ error: "Lista de favoritos não encontrada" })
