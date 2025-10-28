@@ -1,0 +1,44 @@
+@import "./variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  font-family: $font-family; 
+  color: $color-white;
+  background-color: $bg-color;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+  }
+}
+
+a {
+  font-weight: 500;
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $link-color-light;
+  }
+}
+
+html {
+  font-size: 62.5%;
+}
+
+input[disabled] {
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 970px) {
+  html {
+    font-size: 52.5%;
+  }
+}
