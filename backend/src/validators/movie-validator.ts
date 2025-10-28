@@ -9,5 +9,5 @@ export const searchSchema = z.object({
 })
 
 export const getByIdSchema = z.object({
-  id: z.string().regex(/^\d+$/, "O id deve ser numérico!"),
+  id: z.coerce.number("movieId é obrigatório e deve ser numérico!"),
 })
