@@ -3,7 +3,7 @@ import { getOrCreateSessionId } from "../utils/session"
 
 const baseURL = import.meta.env.VITE_REACT_APP_API_URL
 
-const api = axios.create({
+export const api = axios.create({
   baseURL
 })
 
@@ -23,5 +23,3 @@ api.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
-export default api

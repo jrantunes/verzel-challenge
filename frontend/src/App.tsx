@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import api from './services/api'
+import { movieService } from './services'
 
 function App() {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
     (async () => {
-      const response = await api.get("/movies/discover")
+      const response = await movieService.getDiscoverMovies()
       console.log({ data: response.data })
     })()
   }, [])
