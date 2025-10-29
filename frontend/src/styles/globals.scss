@@ -8,8 +8,7 @@
   -moz-osx-font-smoothing: grayscale;
   
   font-family: $font-family; 
-  color: $color-white;
-  background-color: $bg-color;
+  color: $font-color;
 
   &::before,
   &::after {
@@ -19,7 +18,7 @@
 
 a {
   font-weight: 500;
-  color: $color-white;
+  color: $font-color;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 
@@ -38,6 +37,14 @@ html {
 
 input[disabled] {
   pointer-events: none;
+}
+
+body {
+  background-color: $main-bg;
+}
+
+button {
+  border: 0;
 }
 
 @media only screen and (max-width: 970px) {

@@ -1,5 +1,10 @@
+import { SearchFilters } from "@/components"
+import styles from "./styles.module.scss"
+
 export const DiscoverPage = () => {
   return (
-    <h1>discover</h1>
+    <div className={styles.wrapper}>
+      <SearchFilters />
+    </div>
   )
 }

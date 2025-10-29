@@ -1,7 +1,9 @@
 @use "sass:color";
 
 $font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-$color-white: rgba(255, 255, 255, 0.87);
-$bg-color: #242424;
+$header-bg: #14181C;
+$main-bg: #1e252c;
 $link-color: #00E054;
 $link-color-light: color.scale($link-color, $lightness: 10%);
+$font-color: #99AABB;
+$white-color: rgba(255, 255, 255, 0.87);

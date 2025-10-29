@@ -1,5 +1,6 @@
 .wrapper {
   width: 100%;
+  background-color: $header-bg;
 
   > div {
     padding: 1.6rem 0;
@@ -13,6 +14,7 @@
     h1 {
       font-size: 2.8rem;
       cursor: pointer;
+      color: $white-color;
     }
 
     nav ul {
