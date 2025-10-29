@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getOrCreateSessionId } from "../utils/session"
+import { getOrCreateSessionId } from "@/utils/session"
 
 const baseURL = import.meta.env.VITE_REACT_APP_API_URL
 

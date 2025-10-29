@@ -5,9 +5,9 @@ import {
   Navigate
 } from "react-router"
 
-import { MainLayout } from "../layouts"
-import { DiscoverPage } from "../features/movies/pages"
-import { FavoritesListPage } from "../features/favorites/pages"
+import { MainLayout } from "@/layouts"
+import { DiscoverPage } from "@/features/movies/pages"
+import { FavoritesListPage } from "@/features/favorites/pages"
 
 export const Router = () => {
   return (
