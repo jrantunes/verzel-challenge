@@ -22,7 +22,7 @@ export const searchMovies = async (query: string) => {
   return res.data
 }
 
-export const getMovieDetails = async (id: string) => {
+export const getMovieDetails = async (id: number) => {
   const res = await api.get(`/movie/${id}?language=pt-BR`)
   return res.data
 }
