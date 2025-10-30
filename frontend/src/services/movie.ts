@@ -1,12 +1,18 @@
 import { api } from "./api"
 
-import type { GetDiscoverMoviesParams, GetMoviesSearchParams } from "./movie.types"
-import type { Genre } from "@/types/movie/genre"
+import type {
+  GetDiscoverMoviesParams,
+  GetDiscoverMoviesResponse,
+  GetGenresResponse,
+  GetMoviesSearchParams
+} from "./movie.types"
 
 export const movieService = {
-  getDiscoverMovies: (params: GetDiscoverMoviesParams = {}) => api.get("/movies/discover", { params }),
-  getGenres: () => api.get<{ genres: Genre[] }>("/movies/genres"),
+  getDiscoverMovies: (params: GetDiscoverMoviesParams = {}) => 
+    api.get<GetDiscoverMoviesResponse>("/movies/discover", { params }),
+  getGenres: () => api.get<GetGenresResponse>("/movies/genres"),
   getTrending: () => api.get("/movies/trending"),
-  getMoviesSearch: (params: GetMoviesSearchParams = {}) => api.get("/movies/search", { params }),
+  getMoviesSearch: (params: GetMoviesSearchParams = {}) => 
+    api.get("/movies/search", { params }),
   getMovieDetails: (movieId: string) => api.get(`/movies/details/${movieId}`),
 }

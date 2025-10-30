@@ -1,13 +1,26 @@
 import { ChevronDownIcon } from "@radix-ui/react-icons"
 
-import styles from "./styles.module.scss"
 import { useGenresList } from "@/state/hooks/useGenresList"
-import { useState } from "react"
+import { useRecoilState } from "recoil"
+import { moviesFilter } from "@/state/atom"
+
 import type { Genre } from "@/types/movie/genre"
 
+import styles from "./styles.module.scss"
+
 export const SearchFilters = () => {
-  const [selectedGenre, setSelectedGenre] = useState<Genre>()
+  const [filter, setMoviesFilter] = useRecoilState(moviesFilter)
   const genres = useGenresList()
+
+  const selectedGenre = filter.genre
+
+  const handleChangeGenre = (genre: Genre) => {
+    setMoviesFilter({ genre })
+  }
+
+  const clearSelectedGenre = () => {
+    setMoviesFilter({ genre: undefined })
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -19,9 +32,20 @@ export const SearchFilters = () => {
             <ChevronDownIcon />
           </div>
           <ul>
+            <li>
+              <button
+                onClick={clearSelectedGenre}
+              >
+                Todos
+              </button>
+            </li>
             {genres.map((genre) => (
               <li key={genre.id}>
-                <button onClick={() => setSelectedGenre(genre)}>{genre.name}</button>
+                <button 
+                  onClick={() => handleChangeGenre(genre)}
+                >
+                  {genre.name}
+                </button>
               </li>
             ))}
           </ul>

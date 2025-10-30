@@ -1,9 +1,11 @@
 import { atom } from "recoil";
-import { genresAsync } from "./selectors";
 
-import type { Genre } from "@/types/movie/genre";
+import type { MoviesFilter } from "./types";
 
-export const genresListState = atom<Genre[]>({
-  key: 'genresListState',
-  default: genresAsync
+export const moviesFilter = atom<MoviesFilter>({
+  key: 'moviesFilter',
+  default: {
+    search: '',
+    page: 1
+  }
 })
