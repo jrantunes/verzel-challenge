@@ -6,5 +6,5 @@ export const favoriteService = {
   getSharedFavoritesListById: (sharedListId: string) => api.get(`/favorites/share/${sharedListId}`),
   createFavorites: (payload: FavoritePayload) => api.post("/favorites", payload),
   createShareLink: () => api.post("/favorites/share"),
-  deleteFavoriteById: (movieId: string) => api.delete(`/favorites/${movieId}`)
+  deleteFavoriteById: (movieId: number) => api.delete(`/favorites/${movieId}`)
 }

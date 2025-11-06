@@ -1,10 +1,11 @@
-import { movieService } from "@/services";
-import { selector, selectorFamily } from "recoil";
-import { moviesFilter } from "../atom";
+import { favoriteService, movieService } from "@/services"
+import { selector, selectorFamily } from "recoil"
+import { favoritesListState, moviesFilter } from "../atom"
 
-import type { GetDiscoverMoviesResponse } from "@/services/movie.types";
-import type { Genre } from "@/types/movie/genre";
-import type { MovieDetails } from "../types";
+import type { GetDiscoverMoviesResponse } from "@/services/movie.types"
+import type { Genre } from "@/types/movie/genre"
+import type { MovieDetails } from "../types"
+import type { Favorite } from "@/types/favorite/favorite"
 
 export const genresAsync = selector<Genre[]>({
   key: 'genresAsync',
@@ -53,4 +54,21 @@ export const movieDetailsAsync = selectorFamily<MovieDetails | null, string>({
       return null
     }
   }
+})
+
+export const favoritesAsync = selector<Favorite[]>({
+  key: 'favoritesAsync',
+  get: async ({ get }) => {
+    const local = get(favoritesListState)
+    if (local.length > 0) return local
+    try {
+      const { data } = await favoriteService.getFavorites()
+      return data
+    } catch {
+      return local
+    }
+  },
+  set: ({ set }, newValue) => {
+    set(favoritesListState, newValue as Favorite[]);
+  },
 })
