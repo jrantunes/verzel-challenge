@@ -5,6 +5,8 @@ export const addFavoriteSchema = z.object({
   title: z.string("title é obrigatório!"),
   posterPath: z.string().optional(),
   rating: z.number("rating é obrigatório e deve ser numérico!"),
+  overview: z.string("overview é obrigatório!"),
+  releaseDate: z.string("releaseDate é obrigatório!"),
 })
 
 export const removeFavoriteSchema = z.object({

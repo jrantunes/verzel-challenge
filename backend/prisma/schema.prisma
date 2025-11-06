@@ -16,11 +16,13 @@ model FavoriteList {
 }
 
 model Favorite {
-  id          Int          @id @default(autoincrement())
-  movieId     Int
-  title       String
-  posterPath  String?
-  rating      Float?
-  listId      Int
-  list        FavoriteList @relation(fields: [listId], references: [id])
+  id                Int          @id @default(autoincrement())
+  movieId           Int
+  title             String
+  overview          String
+  releaseDate       String
+  posterPath        String?
+  rating            Float?
+  listId            Int
+  list              FavoriteList @relation(fields: [listId], references: [id])
 }

@@ -7,7 +7,7 @@ export const addFavorite = async (req: Request, res: Response) => {
   try {
     const parsed = addFavoriteSchema.safeParse(req.body)
     if (!parsed.success) return res.status(400).json(parsed.error.issues)
-    const { movieId, title, posterPath, rating } = parsed.data
+    const { movieId, title, posterPath, rating, overview, releaseDate } = parsed.data
     const sessionId = (req.headers["x-session-id"] as string)
     if (!sessionId) return res.status(400).json({ error: "sessionId é obrigatório (header x-session-id ou body)" })
     if (!movieId || !title) return res.status(400).json({ error: "movieId e title são obrigatórios" })
@@ -24,6 +24,8 @@ export const addFavorite = async (req: Request, res: Response) => {
         movieId,
         title,
         posterPath,
+        overview,
+        releaseDate,
         rating: rating ?? null,
         listId: favoritesList.id,
       },
