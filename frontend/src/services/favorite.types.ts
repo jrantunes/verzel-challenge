@@ -3,4 +3,6 @@ export type FavoritePayload = {
   title: string
   posterPath?: string
   rating: number
+  overview: string
+  releaseDate: string
 }

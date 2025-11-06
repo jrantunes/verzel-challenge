@@ -4,4 +4,6 @@ export type Favorite = {
   title: string
   posterPath: string
   rating: number
+  overview: string
+  releaseDate: string
 }

@@ -23,8 +23,6 @@ export const CastItem = ({ castItem }: CastItemProps) => {
               https://image.tmdb.org/t/p/original/${castItem.profile_path}.jpg 1000w
             `}
             fetchPriority="low"
-            width="138"
-            height="175"
             referrerPolicy="no-referrer"
           />
         )}

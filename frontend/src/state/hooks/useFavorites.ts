@@ -4,6 +4,7 @@ import { favoritesAsync } from "@/state/selectors"
 import { favoriteService } from "@/services"
 
 import type { MovieDetails } from "../types"
+import type { FavoritePayload } from "@/services/favorite.types"
 
 export const useFavorites = () => {
   const loadable = useRecoilValueLoadable(favoritesAsync)
@@ -17,11 +18,13 @@ export const useFavorites = () => {
   const addFavorite = async (movie?: MovieDetails | null) => {
     if (!movie) return
     try {
-      const payload = {
+      const payload: FavoritePayload = {
         movieId: movie.id,
         rating: movie.vote_average,
         title: movie.title,
-        posterPath: movie.poster_path
+        posterPath: movie.poster_path,
+        overview: movie.overview,
+        releaseDate: movie.release_date
       }
       const response = await favoriteService.createFavorites(payload)
       setFavorites((prev) => [...prev, response.data])
