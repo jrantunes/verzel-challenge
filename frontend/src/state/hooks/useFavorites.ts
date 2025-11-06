@@ -43,6 +43,15 @@ export const useFavorites = () => {
     }
   }
 
+  const shareFavorites = async () => {
+    try {
+      const response = await favoriteService.createShareLink()
+      return response.data
+    } catch (e) {
+      console.error("Error removing favorite:", e)
+    }
+  }
+
   return {
     data:
       loadable.state === "hasValue" ? favorites : [],
@@ -51,5 +60,6 @@ export const useFavorites = () => {
     isFavorite,
     addFavorite,
     removeFavorite,
+    shareFavorites
   }
 }

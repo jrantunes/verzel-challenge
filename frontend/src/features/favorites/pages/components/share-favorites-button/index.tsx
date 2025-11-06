@@ -1,8 +1,18 @@
+import type { HTMLAttributes } from "react";
 import styles from "./styles.module.scss";
 
-export function ShareFavoritesButton() {
+type ShareFavoritesButtonProps = {
+  handleClick: HTMLAttributes<HTMLButtonElement>["onClick"]
+  disabled?: boolean
+}
+
+export function ShareFavoritesButton({ handleClick, disabled = false }: ShareFavoritesButtonProps) {
   return (
-    <button className={styles.wrapper}>
+    <button
+      disabled={disabled}
+      className={styles.wrapper}
+      onClick={handleClick}
+    >
       <svg
         width="18"
         height="18"

@@ -1,18 +1,27 @@
 import { useFavorites } from "@/state/hooks/useFavorites"
-import styles from "./styles.module.scss"
+import { useState } from "react"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { MovieHorizontalCard } from "@/components/shared/movie-horizontal-card"
 import { ShareFavoritesButton } from "../components/share-favorites-button"
+import styles from "./styles.module.scss"
 
 export const FavoritesListPage = () => {
-  const { loading, data: favorites } = useFavorites()
+  const [loadingAction, setLoadingAction] = useState(false)
+  const { loading, data: favorites, shareFavorites } = useFavorites()
+
+  const handleShareFavorites = async () => {
+    setLoadingAction(true)
+    const data = await shareFavorites()
+    console.log({ data })
+    setLoadingAction(false)
+  }
 
   return (
     <div className={styles.wrapper}>
       <div>
         <h1>Meus favoritos</h1>
         {!loading && favorites.length > 0 && (
-          <ShareFavoritesButton />
+          <ShareFavoritesButton disabled={loadingAction} handleClick={handleShareFavorites} />
         )}
       </div>
       {loading ? (
