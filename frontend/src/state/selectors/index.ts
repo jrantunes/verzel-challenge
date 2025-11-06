@@ -4,7 +4,7 @@ import { moviesFilter } from "../atom";
 
 import type { GetDiscoverMoviesResponse } from "@/services/movie.types";
 import type { Genre } from "@/types/movie/genre";
-import type { Movie } from "@/types/movie/movie";
+import type { MovieDetails } from "../types";
 
 export const genresAsync = selector<Genre[]>({
   key: 'genresAsync',
@@ -38,13 +38,17 @@ export const discoverMoviesAsync = selector<GetDiscoverMoviesResponse>({
   }
 })
 
-export const movieDetailsAsync = selectorFamily<Movie | null, string>({
+export const movieDetailsAsync = selectorFamily<MovieDetails | null, string>({
   key: 'movieDetailsAsync',
   get: (id: string) => async () => {
     if (!id) return null
     try {
-      const response = await movieService.getMovieDetails(id)
-      return response.data
+      const movieResponse = await movieService.getMovieDetails(id)
+      const movieCastingResponse = await movieService.getMovieCasting(id)
+      return {
+        ...movieResponse.data,
+        cast: movieCastingResponse.data.cast
+      }
     } catch {
       return null
     }

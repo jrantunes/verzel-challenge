@@ -1,17 +1,21 @@
-import type { Movie } from "@/types/movie/movie"
+import type { MovieDetails } from "@/state/types"
 
-import styles from "./styles.module.scss"
 import { formatMovieDuration } from "@/utils/formatMovieDuration"
 import { formatCurrency } from "@/utils/formatCurrency"
 
+import styles from "./styles.module.scss"
+import { CastList } from "../cast-list"
+
 type MovieInfoProps = {
-  movie: Movie
+  movie: MovieDetails
 }
 
 export const MovieInfo = ({ movie }: MovieInfoProps) => {
   const [releaseYear] = movie.release_date.split("-")
   const formattedReleaseDate = movie.release_date.split("-").reverse().join("/")
   const genresString = movie.genres.map(genre => genre.name).join(", ")
+
+  console.log({ movie })
 
   return (
     <div className={styles.wrapper}>
@@ -49,6 +53,7 @@ export const MovieInfo = ({ movie }: MovieInfoProps) => {
           </>
         )}
       </ul>
+      <CastList cast={movie.cast} />
     </div>
   )
 }

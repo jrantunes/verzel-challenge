@@ -1,5 +1,5 @@
 import type { Genre } from "@/types/movie/genre"
-import type { Movie } from "@/types/movie/movie"
+import type { Cast, Movie } from "@/types/movie/movie"
 
 export type GetDiscoverMoviesParams = {
   page?: number
@@ -18,4 +18,9 @@ export type GetDiscoverMoviesResponse = {
   results: Movie[]
   total_pages: number
   total_results: number
+}
+
+export type GetMovieCastingResponse = {
+  id: number
+  cast: Cast[]
 }
