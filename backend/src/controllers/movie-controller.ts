@@ -13,7 +13,7 @@ export const getDiscoverMovies = async (req: Request, res: Response) => {
   try {
     const parsed = getDiscoverSchema.safeParse(req.query)
     if (!parsed.success) return res.status(400).json(parsed.error.issues)
-    const discoverMovies = await getDiscoverMoviesWithPagination(parsed.data.page)
+    const discoverMovies = await getDiscoverMoviesWithPagination(parsed.data.page, parsed.data.genreId)
     res.json(discoverMovies)
   } catch (err) {
     console.error(err)

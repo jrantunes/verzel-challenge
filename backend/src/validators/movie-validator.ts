@@ -1,7 +1,8 @@
 import { z } from "zod"
 
 export const getDiscoverSchema = z.object({
-  page: z.coerce.number("O parâmetro page deve ser numérico!").default(1)
+  page: z.coerce.number("O parâmetro page deve ser numérico!").default(1),
+  genreId: z.coerce.number("O parâmetro genreId deve ser numérico!").optional()
 })
 
 export const searchSchema = z.object({
