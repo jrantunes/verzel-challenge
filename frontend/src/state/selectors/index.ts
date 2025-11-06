@@ -63,7 +63,7 @@ export const favoritesAsync = selector<Favorite[]>({
     if (local.length > 0) return local
     try {
       const { data } = await favoriteService.getFavorites()
-      return data
+      return data.favorites
     } catch {
       return local
     }

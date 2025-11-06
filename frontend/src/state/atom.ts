@@ -2,23 +2,38 @@ import { atom, DefaultValue } from "recoil"
 
 import type { MoviesFilter } from "./types"
 import type { Favorite } from "@/types/favorite/favorite"
+import { favoriteService } from "@/services"
 
-const FAVORITES_STORAGE_KEY = "app:favorites"
+export const FAVORITES_STORAGE_KEY = "app:favorites"
 
-const loadFavoritesFromStorage = (): Favorite[] => {
+const loadFavoritesFromStorage = (): Favorite[] | undefined => {
   try {
     const stored = localStorage.getItem(FAVORITES_STORAGE_KEY)
-    return stored ? JSON.parse(stored) : []
+    return stored ? JSON.parse(stored) : undefined
   } catch {
     return []
   }
 }
 
 export const favoritesListState = atom<Favorite[]>({
-  key: 'favoritesListState',
-  default: loadFavoritesFromStorage(),
+  key: "favoritesListState",
+  default: [],
   effects: [
-    ({ onSet }) => {
+    ({ setSelf, onSet }) => {
+      const saved = loadFavoritesFromStorage()
+      if (saved) {
+        setSelf(saved)
+      } else {
+        (async () => {
+          try {
+            const { data } = await favoriteService.getFavorites()
+            setSelf(data.favorites)
+            localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(data.favorites))
+          } catch {
+            setSelf([])
+          }
+        })()
+      }
       onSet((newValue) => {
         if (newValue instanceof DefaultValue) return
         localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(newValue))

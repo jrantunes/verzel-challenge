@@ -1,13 +1,16 @@
+import type { ButtonHTMLAttributes } from "react"
 import styles from "./styles.module.scss"
 
 type FavoriteButtonProps = {
   isFavorite: boolean
-  handleClick: () => void
+  handleClick: ButtonHTMLAttributes<HTMLButtonElement>["onClick"]
+  disabled?: boolean
 }
 
-export const FavoriteButton = ({ isFavorite, handleClick }: FavoriteButtonProps) => {
+export const FavoriteButton = ({ isFavorite, handleClick, disabled = false }: FavoriteButtonProps) => {
   return (
     <button
+      disabled={disabled}
       className={`${styles['favorite-button']} ${isFavorite ? styles['active-favorite-button'] : ""}`}
       onClick={handleClick}
       aria-label={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}

@@ -13,7 +13,12 @@
   cursor: pointer;
   transition: all 0.25s ease-in-out;
 
-  &:hover {
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
     background: #334155;
   }
 }
@@ -34,7 +39,7 @@
     fill: #fff;
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     background: #b91c1c;
   }
 }
