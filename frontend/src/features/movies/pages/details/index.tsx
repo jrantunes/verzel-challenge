@@ -25,6 +25,7 @@ export const DetailsPage = () => {
           <div className={styles.wrapper}>
             <div>
               <MovieCard movie={movie} viewOnly />
+              <button>Adicionar aos favoritos</button>
             </div>
             <MovieInfo movie={movie} />
           </div>

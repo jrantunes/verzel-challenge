@@ -5,6 +5,7 @@ import { formatCurrency } from "@/utils/formatCurrency"
 
 import styles from "./styles.module.scss"
 import { CastList } from "../cast-list"
+import { Rating } from "@/components/shared/rating"
 
 type MovieInfoProps = {
   movie: MovieDetails
@@ -14,8 +15,7 @@ export const MovieInfo = ({ movie }: MovieInfoProps) => {
   const [releaseYear] = movie.release_date.split("-")
   const formattedReleaseDate = movie.release_date.split("-").reverse().join("/")
   const genresString = movie.genres.map(genre => genre.name).join(", ")
-
-  console.log({ movie })
+  const rating =  Math.round((movie.vote_average / 2) * 100) / 100
 
   return (
     <div className={styles.wrapper}>
@@ -32,6 +32,9 @@ export const MovieInfo = ({ movie }: MovieInfoProps) => {
           <p>{genresString}</p>
           <span />
           <p>{formatMovieDuration(movie.runtime)}</p>
+          <span />
+          <Rating rating={rating} />
+          <p>{rating}</p>
         </div>
       </div>
       <p>{movie.overview}</p>
