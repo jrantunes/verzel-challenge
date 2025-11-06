@@ -26,3 +26,11 @@ export const getMovieDetails = async (id: number) => {
   const res = await api.get(`/movie/${id}?language=pt-BR`)
   return res.data
 }
+
+export const getMovieCasting = async (id: number) => {
+  const res = await api.get(`/movie/${id}/credits`)
+  return {
+    id: res.data.id,
+    cast: res.data.cast
+  }
+}
