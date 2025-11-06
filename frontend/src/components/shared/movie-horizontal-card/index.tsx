@@ -9,9 +9,10 @@ import styles from "./styles.module.scss"
 
 type MovieHorizontalCardProps = {
   movie: Partial<Movie>
+  hideFavoriteButton?: boolean
 }
 
-export const MovieHorizontalCard = ({ movie }: MovieHorizontalCardProps) => {
+export const MovieHorizontalCard = ({ movie, hideFavoriteButton = false }: MovieHorizontalCardProps) => {
   const [loadingAction, setLoadingAction] = useState(false)
   const { removeFavorite } = useFavorites()
   
@@ -59,11 +60,13 @@ export const MovieHorizontalCard = ({ movie }: MovieHorizontalCardProps) => {
             </div>
           </div>
           <p>{overview}</p>
-          <FavoriteButton 
-            disabled={loadingAction}
-            isFavorite 
-            handleClick={handleRemoveFavorite} 
-          />
+          {!hideFavoriteButton && (
+            <FavoriteButton 
+              disabled={loadingAction}
+              isFavorite 
+              handleClick={handleRemoveFavorite} 
+            />
+          )}
         </div>
       </div>
     </Link>

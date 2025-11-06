@@ -1,33 +1,44 @@
+import { useEffect, useState } from "react"
 import { useFavorites } from "@/state/hooks/useFavorites"
-import { useState } from "react"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { MovieHorizontalCard } from "@/components/shared/movie-horizontal-card"
 import { ShareFavoritesButton } from "../components/share-favorites-button"
+import { useParams } from "react-router"
 import styles from "./styles.module.scss"
-import { useNavigate } from "react-router"
+import type { Favorite } from "@/types/favorite/favorite"
 
-export const FavoritesListPage = () => {
-  const [loadingAction, setLoadingAction] = useState(false)
-  const { loading, data: favorites, shareFavorites } = useFavorites()
+export const SharedFavoritesListPage = () => {
+  const [loading, setLoading] = useState(true)
+  const [isLinkCopied, setIsLinkCopied] = useState(false)
+  const [favorites, setFavorites] = useState<Favorite[]>()
+  const { getSharedFavorites } = useFavorites()
+  const { id } = useParams<{ id: string }>()
 
-  const navigate = useNavigate() 
-
-  const handleShareFavorites = async () => {
-    setLoadingAction(true)
-    const data = await shareFavorites()
-    if (data) {
-      const { shareId } = data
-      navigate(`/favorites/${shareId}`)
-    }
-    setLoadingAction(false)
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href)
+    setIsLinkCopied(true)
   }
+
+  useEffect(() => {
+    if (!id) return
+    (async () => {
+      setLoading(true)
+      const favorites = await getSharedFavorites(id)
+      setFavorites(favorites)
+      setLoading(false)
+    })()
+  }, [id])
 
   return (
     <div className={styles.wrapper}>
       <div>
-        <h1>Meus favoritos</h1>
-        {!loading && favorites.length > 0 && (
-          <ShareFavoritesButton disabled={loadingAction} handleClick={handleShareFavorites} />
+        <h1>Favoritos compartilhados</h1>
+        {!loading && favorites && favorites.length > 0 && (
+          <ShareFavoritesButton 
+            handleClick={handleCopyLink} 
+            disabled={isLinkCopied}
+            label={isLinkCopied ? "Link copiado" : "Copiar link de compartilhamento"} 
+          />
         )}
       </div>
       {loading ? (
@@ -41,6 +52,7 @@ export const FavoritesListPage = () => {
           {favorites?.map(favorite => (
             <li key={favorite.id}>
               <MovieHorizontalCard 
+                hideFavoriteButton
                 movie={{
                   title: favorite.title,
                   id: favorite.movieId,

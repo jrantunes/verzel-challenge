@@ -12,3 +12,7 @@ export type FavoritePayload = {
 export type GetFavoritesResponse = {
   favorites: Favorite[]
 }
+
+export type CreateShareLinkResponse = {
+  shareId: string
+}

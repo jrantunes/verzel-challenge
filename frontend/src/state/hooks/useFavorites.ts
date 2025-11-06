@@ -48,7 +48,18 @@ export const useFavorites = () => {
       const response = await favoriteService.createShareLink()
       return response.data
     } catch (e) {
-      console.error("Error removing favorite:", e)
+      console.error("Error sharing favorites:", e)
+      return null
+    }
+  }
+
+  const getSharedFavorites = async (id: string) => {
+    try {
+      const response = await favoriteService.getSharedFavoritesListById(id)
+      return response.data.favorites || []
+    } catch (e) {
+      console.error("Error getting shared favorites:", e)
+      return []
     }
   }
 
@@ -60,6 +71,7 @@ export const useFavorites = () => {
     isFavorite,
     addFavorite,
     removeFavorite,
-    shareFavorites
+    shareFavorites,
+    getSharedFavorites
   }
 }
