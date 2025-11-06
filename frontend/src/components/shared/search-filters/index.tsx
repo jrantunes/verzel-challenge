@@ -25,10 +25,10 @@ export const SearchFilters = () => {
   return (
     <div className={styles.wrapper}>
       <div>
-        <h3>BROWSE BY</h3>
+        <h3>FILTRAR POR</h3>
         <div className={styles['filter-select']}>
           <div>
-            {selectedGenre ? selectedGenre.name : 'GENRE'}
+            {selectedGenre ? selectedGenre.name : 'GÊNERO'}
             <ChevronDownIcon />
           </div>
           <ul>

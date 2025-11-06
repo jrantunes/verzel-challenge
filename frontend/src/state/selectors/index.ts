@@ -22,9 +22,9 @@ export const genresAsync = selector<Genre[]>({
 export const discoverMoviesAsync = selector<GetDiscoverMoviesResponse>({
   key: 'discoverMoviesAsync',
   get: async ({ get }) => {
-    const { page } = get(moviesFilter)
+    const { page, genre } = get(moviesFilter)
     try {
-      const response = await movieService.getDiscoverMovies({ page })
+      const response = await movieService.getDiscoverMovies({ page, genreId: genre?.id })
       const { data } = response
       return data
     } catch {

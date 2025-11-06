@@ -3,6 +3,7 @@ import type { Cast, Movie } from "@/types/movie/movie"
 
 export type GetDiscoverMoviesParams = {
   page?: number
+  genreId?: number
 }
 
 export type GetMoviesSearchParams = {

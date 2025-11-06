@@ -19,7 +19,7 @@ export const Header = () => {
                 to="/" 
                 className={pathname === "/" ? "active" : undefined}
               >
-                FILMS
+                FILMES
               </Link>
             </li>
             <li>
@@ -27,7 +27,7 @@ export const Header = () => {
                 to="/favorites" 
                 className={pathname === "/favorites" ? "active" : undefined}
               >
-                FAVORITES
+                FAVORITOS
               </Link>
             </li>
           </ul>
