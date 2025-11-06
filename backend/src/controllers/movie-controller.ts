@@ -4,7 +4,8 @@ import {
   getGenres,
   getTrendingMoviesByWeek,
   searchMovies,
-  getMovieDetails
+  getMovieDetails,
+  getMovieCasting
 } from "../services/tmdb-service"
 import { getByIdSchema, getDiscoverSchema, searchSchema } from "../validators/movie-validator"
 
@@ -61,5 +62,17 @@ export const getMovieById = async (req: Request, res: Response) => {
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: "Erro ao buscar detalhes" })
+  }
+}
+
+export const getMovieCastingByMovieId = async (req: Request, res: Response) => {
+  try {
+    const parsed = getByIdSchema.safeParse(req.params)
+    if (!parsed.success) return res.status(400).json(parsed.error.issues)
+    const casting = await getMovieCasting(parsed.data.id)
+    res.json(casting)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: "Erro ao buscar casting" })
   }
 }
