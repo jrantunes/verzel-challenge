@@ -1,5 +1,4 @@
 import { Request, Response } from "express"
-import { generateShareLink } from "../utils/generate-share-link"
 import { prisma } from "../lib/prisma"
 import { addFavoriteSchema, removeFavoriteSchema } from "../validators/favorite-validator"
 
@@ -79,8 +78,7 @@ export const generateShare = async (req: Request, res: Response) => {
     if (!sessionId) return res.status(400).json({ error: "sessionId é obrigatório" })
     const favoritesList = await prisma.favoriteList.findUnique({ where: { sessionId } })
     if (!favoritesList) return res.status(404).json({ error: "Lista de favoritos não encontrada" })
-    const shareLink = generateShareLink(favoritesList.uuid)
-    res.json({ shareLink })
+    res.json({ shareId: favoritesList.uuid })
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: "Erro ao gerar link de compartilhamento" })
