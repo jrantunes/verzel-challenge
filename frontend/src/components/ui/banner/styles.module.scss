@@ -1,0 +1,38 @@
+.banner {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: left;
+  padding: 4rem;
+  color: #fff;
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.55) 40%,
+    #1e252c 80%
+  );
+  z-index: 2;
+}

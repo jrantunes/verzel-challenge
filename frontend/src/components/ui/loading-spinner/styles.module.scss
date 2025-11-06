@@ -1,0 +1,28 @@
+.wrapper {
+  @keyframes clip {
+    0% {
+      transform: rotate(0deg) scale(1)
+    } 
+    
+    50% {
+      transform: rotate(180deg) scale(0.8)
+    } 
+
+    100% {
+      transform: rotate(360deg) scale(1)
+    }
+  }
+
+  background: transparent;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 100%;
+  border: 0.2rem solid;
+  border-top-color: #00E054;
+  border-bottom-color: transparent;
+  border-left-color: #00E054;
+  border-right-color: #00E054;
+  display: inline-block;
+  animation: clip 0.75s 0s infinite linear;
+  animation-fill-mode: both;
+}

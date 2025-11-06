@@ -1,3 +1,5 @@
+import type { Genre } from "./genre"
+
 export type Movie = {
   adult: boolean
   backdrop_path: string
@@ -14,4 +16,8 @@ export type Movie = {
   video: boolean
   vote_average: number
   vote_count: number
+  genres: Genre[]
+  revenue: number
+  budget: number
+  runtime: number
 }

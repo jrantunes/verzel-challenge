@@ -51,3 +51,14 @@
     }
   }
 }
+
+.details {
+  position: absolute;
+  z-index: 10;
+  background-color: transparent;
+
+  > div h1,
+  nav ul li a {
+    color: #FFFFFF;
+  }
+}

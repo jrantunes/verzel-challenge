@@ -30,7 +30,7 @@
     border-radius: 0.4rem;
   }
 
-  &:hover {
+  &:not(.view-only):hover {
     .movie-title {
       display: block;
     }
@@ -86,4 +86,19 @@
   box-shadow: inset 0 0 0.1rem 0.1rem rgba(20, 24, 28, .125);
   transition: border 0.1s linear;
   border-radius: 0.4rem;
+}
+
+.view-only-overlay {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  text-indent: 110%;
+  overflow: hidden;
+  transition: box-shadow 0.1s ease-in;
+  box-shadow: inset 0 0 0 0.1rem rgba(221, 238, 255, .1);
+  border-radius: 0.4rem;
+  cursor: default;
 }

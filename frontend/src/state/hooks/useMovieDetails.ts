@@ -1,8 +1,8 @@
 import { useRecoilValueLoadable } from "recoil"
-import { discoverMoviesAsync } from "../selectors"
+import { movieDetailsAsync } from "../selectors"
 
-export const useDiscoverMoviesList = () => {
-  const loadable = useRecoilValueLoadable(discoverMoviesAsync)
+export const useMovieDetails = (id: string) => {
+  const loadable = useRecoilValueLoadable(movieDetailsAsync(id))
   switch (loadable.state) {
     case "loading":
       return { data: null, loading: true, error: false }

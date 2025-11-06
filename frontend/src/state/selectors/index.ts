@@ -1,9 +1,10 @@
 import { movieService } from "@/services";
-import { selector } from "recoil";
+import { selector, selectorFamily } from "recoil";
 import { moviesFilter } from "../atom";
 
 import type { GetDiscoverMoviesResponse } from "@/services/movie.types";
 import type { Genre } from "@/types/movie/genre";
+import type { Movie } from "@/types/movie/movie";
 
 export const genresAsync = selector<Genre[]>({
   key: 'genresAsync',
@@ -33,6 +34,19 @@ export const discoverMoviesAsync = selector<GetDiscoverMoviesResponse>({
         total_pages: 1,
         total_results: 0,
       }
+    }
+  }
+})
+
+export const movieDetailsAsync = selectorFamily<Movie | null, string>({
+  key: 'movieDetailsAsync',
+  get: (id: string) => async () => {
+    if (!id) return null
+    try {
+      const response = await movieService.getMovieDetails(id)
+      return response.data
+    } catch {
+      return null
     }
   }
 })
