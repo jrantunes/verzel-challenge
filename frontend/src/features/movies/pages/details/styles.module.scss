@@ -1,0 +1,36 @@
+.wrapper {
+  max-width: 95rem;
+  width: 100%;
+  margin: 5.4rem auto 3.2rem;
+  margin-top: -6rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 4.2rem;
+
+  > div:first-of-type {
+    position: sticky;
+    height: fit-content;
+    top: 1.2rem;
+  }
+}
+
+.empty-wrapper {
+  max-width: 95rem;
+  width: 100%;
+  margin: 0 auto 3.2rem;
+  padding-top: 8rem;
+}
+
+.empty-movies {
+  font-size: 1.4rem;
+  margin-top: 2.4rem;
+}
+
+.loading-wrapper {
+  padding-top: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+}

@@ -1,0 +1,68 @@
+.wrapper {
+  width: 100%;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  border: 0.1rem solid #293037;
+  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, .4);
+  display: flex;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+
+  > div:first-of-type {
+    width: 15.8rem;
+    min-width: 15.8rem;
+    height: 22.4rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  > div:last-of-type {
+    padding: 1rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    button {
+      margin-top: auto;
+      width: fit-content;
+    }
+  
+    strong {
+      font-size: 2rem;
+      color: #FFFFFF;
+      line-height: 1;
+      
+      span {
+        display: inline-block;
+        margin-left: 1.2rem;
+        align-content: end;
+        font-size: 1.6rem;
+        color: #DDEEFF;
+        font-weight: 400;
+      }
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
+  }
+
+  &:hover {
+    border-color: #00E054;
+  }
+}
+
+.rating {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  margin-top: 0.4rem;
+
+  p {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+}

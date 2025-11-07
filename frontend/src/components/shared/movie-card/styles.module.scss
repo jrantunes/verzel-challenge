@@ -1,0 +1,114 @@
+.wrapper {
+  width: 23rem;
+  height: 34.5rem;
+  box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, .35), 0 0.3rem 1rem rgba(0, 0, 0, .8);
+  cursor: pointer;
+  position: relative;
+  border-radius: 0.4rem;
+
+  img {
+    display: block;
+    border-radius: 0.4rem;
+    width: 23rem;
+    height: 34.5rem;
+  }
+
+  a {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    white-space: nowrap;
+    text-indent: 110%;
+    overflow: hidden;
+    transition: box-shadow 0.1s ease-in;
+    box-shadow: inset 0 0 0 0.1rem rgba(221, 238, 255, .1);
+    color: #678;
+    text-decoration: none;
+    border-radius: 0.4rem;
+  }
+
+  &:not(.view-only):hover {
+    .movie-title {
+      display: block;
+    }
+
+    .overlay {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-width: 0.3rem;
+    }
+  }
+}
+
+.movie-title {
+  line-height: 2.4rem;
+  font-size: 1.4rem;
+  background-color: #445566;
+  color: #BBCCDD;
+  font-weight: 700;
+  display: none;
+  white-space: nowrap; 
+  position: absolute;
+  top: -(calc(2.8rem + 0.77rem));
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.9rem 0.2rem;
+  border-radius: 0.4rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-color: inherit;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+  }
+}
+
+.overlay {
+  display: block;
+  position: absolute;
+  top: calc(0rem - 0.3rem);
+  left: calc(0rem - 0.3rem);
+  right: calc(0rem - 0.3rem);
+  bottom: calc(0rem - 0.3rem);
+  text-indent: 110%;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0.1rem solid #00E054;
+  box-shadow: inset 0 0 0.1rem 0.1rem rgba(20, 24, 28, .125);
+  transition: border 0.1s linear;
+  border-radius: 0.4rem;
+}
+
+.view-only-overlay {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  text-indent: 110%;
+  overflow: hidden;
+  transition: box-shadow 0.1s ease-in;
+  box-shadow: inset 0 0 0 0.1rem rgba(221, 238, 255, .1);
+  border-radius: 0.4rem;
+  cursor: default;
+}
+
+.star {
+  width: 2rem;
+  height: 2rem;
+  fill: #ffb800;
+  stroke: #14181C;
+  position: absolute;
+  top: 1.4rem;
+  left: 1.4rem;
+}

@@ -1,0 +1,15 @@
+.rating {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.star {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: #ffb800;
+}
+
+.empty {
+  fill: #ddd;
+}
