@@ -1,0 +1,64 @@
+.wrapper {
+  flex: 1;
+  
+  > div:first-of-type {
+    margin-bottom: 3rem;
+    
+    > div:first-of-type {
+      display: flex;
+      gap: 1.4rem;
+
+      h1 {
+        font-size: 3.2rem;
+        color: #FFFFFF;
+        line-height: 1;
+        max-width: 50rem;
+        
+        p {
+          display: inline-block;
+          margin-left: 1.2rem;
+          align-content: end;
+          font-size: 1.6rem;
+          color: #DDEEFF;
+          font-weight: 400;
+        }
+      }
+    }
+
+    > div:last-of-type {
+      margin-top: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+
+      p {
+        font-size: 1.4rem;
+        font-weight: 500;
+      }
+
+      span {
+        width: 0.4rem;
+        height: 0.4rem;
+        background-color: $font-color;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  > p {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: .075em;
+    max-width: 60rem;
+  }
+}
+
+.extra-info {
+  margin-top: 3rem;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+}
