@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import { useFavorites } from "@/state/hooks/useFavorites"
 
 import type { Movie } from "@/types/movie/movie"
 
@@ -10,6 +11,10 @@ type MovieCardProps = {
 }
 
 export const MovieCard = ({ movie, viewOnly = false }: MovieCardProps) => {
+  const { isFavorite } = useFavorites()
+  
+  const isMovieFavorite = isFavorite(movie.id)
+
   return (
     <div className={`${styles.wrapper} ${viewOnly ? 'view-only' : ''}`}>
       <img 
@@ -32,7 +37,15 @@ export const MovieCard = ({ movie, viewOnly = false }: MovieCardProps) => {
         <>
           <span className={styles['movie-title']}>{movie.title}</span>
           <Link to={`/movie/${movie.id}`}>
-            <span className={styles.overlay}></span>
+            <span className={styles.overlay}>
+              {isMovieFavorite && (
+                <svg className={styles.star} viewBox="0 0 24 24">
+                  <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.876 
+                          1.48 8.318L12 18.896l-7.416 4.604 
+                          1.48-8.318L0 9.306l8.332-1.151z" />
+                </svg>
+              )}
+            </span>
           </Link>
         </>
       ) : (
