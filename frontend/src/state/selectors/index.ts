@@ -1,10 +1,10 @@
 import { favoriteService, movieService } from "@/services"
 import { selector, selectorFamily } from "recoil"
-import { favoritesListState, moviesFilter } from "../atom"
+import { favoritesListState } from "../atom"
 
 import type { GetDiscoverMoviesResponse } from "@/services/movie.types"
 import type { Genre } from "@/types/movie/genre"
-import type { MovieDetails } from "../types"
+import type { MovieDetails, MoviesFilter } from "../types"
 import type { Favorite } from "@/types/favorite/favorite"
 
 export const genresAsync = selector<Genre[]>({
@@ -20,11 +20,16 @@ export const genresAsync = selector<Genre[]>({
   }
 })
 
-export const discoverMoviesAsync = selector<GetDiscoverMoviesResponse>({
+export const discoverMoviesAsync = selectorFamily<GetDiscoverMoviesResponse, MoviesFilter>({
   key: 'discoverMoviesAsync',
-  get: async ({ get }) => {
-    const { page, genre } = get(moviesFilter)
+  get: (filter) => async () => {
+    const { page, genre, search } = filter
     try {
+      if (search && search.trim().length > 0) {
+        const response = await movieService.getMoviesSearch({ q: search })
+        const { data } = response
+        return data
+      }
       const response = await movieService.getDiscoverMovies({ page, genreId: genre?.id })
       const { data } = response
       return data

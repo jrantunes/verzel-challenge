@@ -4,8 +4,8 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { MovieHorizontalCard } from "@/components/shared/movie-horizontal-card"
 import { ShareFavoritesButton } from "../components/share-favorites-button"
 import { useParams } from "react-router"
-import styles from "./styles.module.scss"
 import type { Favorite } from "@/types/favorite/favorite"
+import styles from "./styles.module.scss"
 
 export const SharedFavoritesListPage = () => {
   const [loading, setLoading] = useState(true)

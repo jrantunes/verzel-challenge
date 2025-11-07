@@ -1,0 +1,39 @@
+.wrapper {
+  position: relative;
+  width: 26rem;
+  background: #1e293b;
+  border: 0.1rem solid #334155;
+  border-radius: 0.6rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  gap: 1rem;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: #475569;
+  }
+
+  &:focus-within {
+    border-color: #22c55e;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1.4rem;
+    color: #e2e8f0;
+
+    &::placeholder {
+      color: #64748b;
+      font-size: 1.4rem;
+    }
+  }
+
+  .icon {
+    color: #64748b;
+    flex-shrink: 0;
+  }
+}

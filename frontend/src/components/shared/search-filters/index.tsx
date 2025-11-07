@@ -15,11 +15,11 @@ export const SearchFilters = () => {
   const selectedGenre = filter.genre
 
   const handleChangeGenre = (genre: Genre) => {
-    setMoviesFilter({ genre })
+    setMoviesFilter(prev => ({ ...prev, genre }))
   }
 
   const clearSelectedGenre = () => {
-    setMoviesFilter({ genre: undefined })
+    setMoviesFilter(prev => ({ ...prev, genre: undefined }))
   }
 
   return (

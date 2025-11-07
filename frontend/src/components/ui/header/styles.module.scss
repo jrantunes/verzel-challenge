@@ -17,33 +17,39 @@
       color: $white-color;
     }
 
-    nav ul {
+    nav {
       display: flex;
       align-items: center;
       gap: 1.8rem;
-      list-style: none;
+      
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 1.8rem;
+        list-style: none;
 
-      li {
-        cursor: pointer;
-        font-size: 1.4rem;
+        li {
+          cursor: pointer;
+          font-size: 1.4rem;
 
-        a {
-          position: relative;
+          a {
+            position: relative;
 
-          &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 0.2rem;
-            background-color: $link-color;
-            transition: width 0.2s ease-in-out;
-          }
-
-          &:hover {
             &::after {
-              width: 100%;
+              content: "";
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              width: 0;
+              height: 0.2rem;
+              background-color: $link-color;
+              transition: width 0.2s ease-in-out;
+            }
+
+            &:hover {
+              &::after {
+                width: 100%;
+              }
             }
           }
         }

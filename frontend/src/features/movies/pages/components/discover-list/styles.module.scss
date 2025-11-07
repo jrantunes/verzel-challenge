@@ -1,9 +1,17 @@
-.wrapper {
+.grid-wrapper {
   list-style: none;
   margin-top: 2.4rem;
   display: grid;
   gap: 0.8rem;
   grid-template-columns: repeat(auto-fill, minmax(23rem, 23rem));
+}
+
+.horizontal-wrapper {
+  list-style: none;
+
+  li + li {
+    margin-top: 1.4rem;
+  }
 }
 
 .empty-movies {

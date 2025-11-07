@@ -1,10 +1,14 @@
 import { Link, useLocation } from "react-router"
+import { SearchInput } from "../search-input"
+import { useSearchMovies } from "@/state/hooks/useSearchMovies"
 import styles from "./styles.module.scss"
 
 export const Header = () => {
+  const { input, setInput } = useSearchMovies()
   const { pathname } = useLocation()
 
   const isDetailsPage = pathname.startsWith("/movie/")
+  const isHomePage = pathname === "/"
 
   return (
     <header className={`${styles.wrapper} ${isDetailsPage ? styles.details : ''}`}>
@@ -31,6 +35,12 @@ export const Header = () => {
               </Link>
             </li>
           </ul>
+          {isHomePage && (
+            <SearchInput 
+              value={input} 
+              onChange={(e) => setInput(e.currentTarget.value)} 
+            />
+          )}
         </nav>
       </div>
     </header>

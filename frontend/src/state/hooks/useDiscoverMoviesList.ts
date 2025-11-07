@@ -1,8 +1,10 @@
-import { useRecoilValueLoadable } from "recoil"
+import { useRecoilValue, useRecoilValueLoadable } from "recoil"
 import { discoverMoviesAsync } from "../selectors"
+import { moviesFilter } from "../atom"
 
 export const useDiscoverMoviesList = () => {
-  const loadable = useRecoilValueLoadable(discoverMoviesAsync)
+  const filter = useRecoilValue(moviesFilter)
+  const loadable = useRecoilValueLoadable(discoverMoviesAsync(filter))
   switch (loadable.state) {
     case "loading":
       return { data: null, loading: true, error: false }

@@ -2,6 +2,7 @@ import { Link } from "react-router"
 import { useFavorites } from "@/state/hooks/useFavorites"
 import { useState, type MouseEvent } from "react"
 import type { Movie } from "@/types/movie/movie"
+import type { MovieDetails } from "@/state/types"
 
 import { FavoriteButton } from "@/components/ui/favorite-button"
 import { Rating } from "../rating"
@@ -14,16 +15,22 @@ type MovieHorizontalCardProps = {
 
 export const MovieHorizontalCard = ({ movie, hideFavoriteButton = false }: MovieHorizontalCardProps) => {
   const [loadingAction, setLoadingAction] = useState(false)
-  const { removeFavorite } = useFavorites()
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites()
   
   const [releaseYear] = movie.release_date!.split("-")
   const rating =  Math.round((movie.vote_average! / 2) * 100) / 100
   const overview = movie.overview!.length <= 560 ? movie.overview : movie.overview!.slice(0, 560).trimEnd() + "..."
+  const isMovieFavorite = isFavorite(movie.id)
 
-  const handleRemoveFavorite = async (e: MouseEvent<HTMLButtonElement>) => {
+  const handleToggleFavorite = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setLoadingAction(true)
-    await removeFavorite(movie.id)
+    if (isMovieFavorite) {
+      await removeFavorite(movie?.id)
+      setLoadingAction(false)
+      return
+    }
+    await addFavorite(movie as  MovieDetails)
     setLoadingAction(false)
   }
 
@@ -63,8 +70,8 @@ export const MovieHorizontalCard = ({ movie, hideFavoriteButton = false }: Movie
           {!hideFavoriteButton && (
             <FavoriteButton 
               disabled={loadingAction}
-              isFavorite 
-              handleClick={handleRemoveFavorite} 
+              isFavorite={isMovieFavorite}
+              handleClick={handleToggleFavorite} 
             />
           )}
         </div>
