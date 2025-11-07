@@ -10,7 +10,7 @@ Tecnologias:
 **Gerenciamento de Estado**: Recoil
 **Deploy local com Docker + Docker Compose**
 
-**DEMO: ** [https://verzel-challenge-rosy.vercel.app/](https://verzel-challenge-rosy.vercel.app/)
+**DEMO:** [https://verzel-challenge-rosy.vercel.app/](https://verzel-challenge-rosy.vercel.app/)
 
 ---
 
