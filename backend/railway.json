@@ -1,0 +1,14 @@
+{
+  "project": {
+    "name": "verzel-challenge-api"
+  },
+  "build": {
+    "build": "./build.sh"
+  },
+  "deploy": {
+    "start": "sh -c 'export $(grep -v \"^#\" .env | xargs) && docker run -p $API_PORT:$API_PORT -e API_PORT=$API_PORT railway-app'"
+  },
+  "env": {
+    "API_PORT": "8080"
+  }
+}
