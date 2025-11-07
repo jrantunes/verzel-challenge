@@ -21,4 +21,4 @@ COPY .env .env
 
 EXPOSE ${API_PORT}
 
-CMD ["node", "dist/src/server.js"]
+CMD sh -c "npx prisma migrate deploy && node dist/src/server.js"
