@@ -36,6 +36,14 @@ cp .env.example .env
 
 **Alterar o valor de TMDB_API_KEY para a sua chave de API!**
 
+#### 2️⃣ Criar .env no backend
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+**Alterar o valor de TMDB_API_KEY para a sua chave de API!**
+
 #### 3️⃣ Criar .env no frontend
 
 ```bash
